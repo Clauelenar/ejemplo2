@@ -1,16 +1,14 @@
 import streamlit as st
-import pandas as pd
-import matplotlib.pyplot as plt
 import seaborn as sns
+import matplotlib.pyplot as plt
 
-st.title("Gráfico Simple con Streamlit")
+st.title("Gráfico Simple con Dataset de Seaborn")
 
-# Cargar datos desde GitHub (IMPORTANTE: Usa el enlace 'Raw')
-url = "https://raw.githubusercontent.com/giuliannaac/ejercicio/main/Credit.csv"
-df = pd.read_csv(url)
+# Cargar un dataset incluido en Seaborn
+df = sns.load_dataset("tips")
 
-# Graficar un histograma de la variable 'Balance'
-st.write("### Distribución de la Variable Balance")
+# Graficar un histograma de la columna 'total_bill'
+st.write("### Distribución de Total Bill")
 fig, ax = plt.subplots()
-sns.histplot(df["Balance"], bins=30, kde=True, color="blue", ax=ax)
+sns.histplot(df["total_bill"], bins=20, kde=True, color="blue", ax=ax)
 st.pyplot(fig)
