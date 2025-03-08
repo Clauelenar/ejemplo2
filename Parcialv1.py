@@ -73,7 +73,7 @@ st.markdown("""
 - A partir de **2021**, la **tasa de retención aumenta sostenidamente**, indicando una posible **mejoría en estrategias institucionales**.
 """)
 
-data = load_data(url)
+
 
 # Ordenar los datos asegurando que "Spring" aparece antes que "Fall"
 data_sorted = data.sort_values(by=['Year', 'Term'], ascending=[True, True])
