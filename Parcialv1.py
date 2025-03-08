@@ -38,12 +38,12 @@ fig = px.bar(
 )
 
 # Mostrar el gráfico en Streamlit
-st.plotly_chart(fig)
+
 
 # **Gráfico de Retention Rate (%)**
 st.write("### 📈 Tasa de Retención (%)")
 
-fig_retention = px.line(
+fig = px.line(
     data_sorted, 
     x="Year-Term", 
     y="Retention Rate (%)", 
@@ -51,8 +51,7 @@ fig_retention = px.line(
     title="Evolución de la Tasa de Retención (%)",
     labels={'Retention Rate (%)': 'Tasa de Retención', 'Year-Term': 'Año y Term'}
 )
+st.plotly_chart(fig)
 
-# Mostrar el gráfico en Streamlit
-st.plotly_chart(fig_retention)
 
 
