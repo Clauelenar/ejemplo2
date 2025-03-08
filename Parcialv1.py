@@ -56,6 +56,22 @@ fig.update_layout(
 
 # Mostrar el gráfico en Streamlit
 st.plotly_chart(fig)
+st.markdown("""
+###  **1. Aumento en las Inscripciones**
+- Las inscripciones a la universidad han **aumentado con el tiempo**, lo que muestra una **mayor popularidad** de la institución.
+
+###  **2. Brecha entre Aplicaciones, Admitidos y Matriculados**
+- Aunque los **admitidos y matriculados** han aumentado con los años, **no siguen la misma tendencia alcista** de las aplicaciones.
+
+###  **3. Patrón de Admisiones por Período**
+- **No se evidencian patrones distintos** entre los períodos de los años (**Spring y Fall**), lo que indica una distribución uniforme de admisiones.
+
+### ⚠ **4. Caída en la Tasa de Retención en 2020**
+- La tasa de **retención estudiantil fluctúa** hasta el año **2020**, donde tiene una **caída considerablemente grave**, posiblemente asociada a la **pandemia**.
+
+###  **5. Recuperación de la Tasa de Retención**
+- A partir de **2021**, la **tasa de retención aumenta sostenidamente**, indicando una posible **mejoría en estrategias institucionales**.
+""")
 
 
 
