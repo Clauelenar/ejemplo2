@@ -66,12 +66,59 @@ st.markdown("""
 ###  **3. Patrón de Admisiones por Período**
 - **No se evidencian patrones distintos** entre los períodos de los años (**Spring y Fall**), lo que indica una distribución uniforme de admisiones.
 
-### ⚠ **4. Caída en la Tasa de Retención en 2020**
+###  **4. Caída en la Tasa de Retención en 2020**
 - La tasa de **retención estudiantil fluctúa** hasta el año **2020**, donde tiene una **caída considerablemente grave**, posiblemente asociada a la **pandemia**.
 
 ###  **5. Recuperación de la Tasa de Retención**
 - A partir de **2021**, la **tasa de retención aumenta sostenidamente**, indicando una posible **mejoría en estrategias institucionales**.
 """)
+
+data = load_data(url)
+
+# Ordenar los datos asegurando que "Spring" aparece antes que "Fall"
+data_sorted = data.sort_values(by=['Year', 'Term'], ascending=[True, True])
+
+# Reestructurar el DataFrame para graficar las facultades en el eje X
+data_melted = data_sorted.melt(id_vars=['Year', 'Student Satisfaction (%)'], 
+                               value_vars=['Engineering Enrolled', 'Business Enrolled', 
+                                           'Arts Enrolled', 'Science Enrolled'], 
+                               var_name='Faculty', value_name='Enrollment')
+
+# **Crear gráfico de barras con Student Satisfaction (%) también afectado por la barra deslizante**
+fig = px.bar(
+    data_melted, 
+    x='Faculty', 
+    y='Enrollment', 
+    color='Faculty', 
+    animation_frame='Year',  # Barra deslizante para los años
+    title='Enrollment per Faculty with Student Satisfaction Rate',
+    labels={'Enrollment': 'Number of Enrolled Students', 'Faculty': 'Faculty'}
+)
+
+# Filtrar Student Satisfaction (%) por el año correspondiente
+student_satisfaction_per_year = data_sorted[['Year', 'Student Satisfaction (%)']].drop_duplicates()
+
+# Agregar la línea de Student Satisfaction (%) afectada por la barra deslizante
+fig.add_scatter(
+    x=data_melted['Faculty'], 
+    y=student_satisfaction_per_year['Student Satisfaction (%)'], 
+    mode='lines+markers', 
+    name='Student Satisfaction (%)', 
+    yaxis='y2',
+    animation_frame=student_satisfaction_per_year['Year']
+)
+
+# Ajustar el diseño para doble eje Y y barra deslizante
+fig.update_layout(
+    yaxis=dict(title='Enrollment Count'),
+    yaxis2=dict(title='Student Satisfaction (%)', overlaying='y', side='right'),
+    xaxis=dict(title='Faculty'),
+    legend_title="Legend",
+    template='plotly_white'
+)
+
+# **Mostrar el gráfico en Streamlit**
+st.plotly_chart(fig)
 
 
 
