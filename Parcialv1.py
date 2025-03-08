@@ -3,17 +3,9 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 # Mostrar los datos en Streamlit
 st.title("📊 University Student Dashboard")
-url = "https://raw.githubusercontent.com/Clauelenar/ejemplo2/refs/heads/main/university_student_dashboard_data.csv"
 
-# Cargar los datos desde GitHub
-@st.cache_data
-def load_data(url):
-    return pd.read_csv(url)
-
-# Cargar los datos
-data = load_data(url)
-
-
+file_path = "university_student_dashboard_data.csv"
+data = pd.read_csv(file_path)
 
 # Título de la app
 st.title("Análisis de Admisiones.")
