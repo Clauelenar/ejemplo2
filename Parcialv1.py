@@ -37,20 +37,26 @@ fig = px.bar(
     labels={'Count': 'Número de Estudiantes', 'Year-Term': 'Año y Term'}
 )
 
-# Mostrar el gráfico en Streamlit
 
 
-# **Gráfico de Retention Rate (%)**
-st.write("### 📈 Tasa de Retención (%)")
-
-fig = px.line(
-    data_sorted, 
-    x="Year-Term", 
-    y="Retention Rate (%)", 
-    markers=True,
-    title="Evolución de la Tasa de Retención (%)",
-    labels={'Retention Rate (%)': 'Tasa de Retención', 'Year-Term': 'Año y Term'}
+fig.add_scatter(
+    x=data_sorted['Year-Term'], 
+    y=data_sorted['Retention Rate (%)'], 
+    mode='lines+markers', 
+    name='Retention Rate (%)', 
+    yaxis='y2'
 )
+
+# Ajustar el diseño para doble eje Y
+fig.update_layout(
+    yaxis=dict(title='Número de Estudiantes'),
+    yaxis2=dict(title='Retention Rate (%)', overlaying='y', side='right'),
+    xaxis=dict(title='Año-Term'),
+    legend_title="Categoría",
+    template='plotly_white'
+)
+
+# Mostrar el gráfico en Streamlit
 st.plotly_chart(fig)
 
 
