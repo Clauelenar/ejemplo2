@@ -1,6 +1,5 @@
 pandas
 plotly
 streamlit
-seaborn
-requests
+
 lotly.express
