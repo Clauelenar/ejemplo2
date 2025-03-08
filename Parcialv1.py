@@ -85,7 +85,7 @@ data_melted = data_sorted.melt(id_vars=['Year', 'Student Satisfaction (%)'],
                                var_name='Faculty', value_name='Enrollment')
 
 # **Crear gráfico de barras con Student Satisfaction (%) también afectado por la barra deslizante**
-fig = px.bar(
+fig2 = px.bar(
     data_melted, 
     x='Faculty', 
     y='Enrollment', 
@@ -99,7 +99,7 @@ fig = px.bar(
 student_satisfaction_per_year = data_sorted[['Year', 'Student Satisfaction (%)']].drop_duplicates()
 
 # Agregar la línea de Student Satisfaction (%) afectada por la barra deslizante
-fig.add_scatter(
+fig2.add_scatter(
     x=data_melted['Faculty'], 
     y=student_satisfaction_per_year['Student Satisfaction (%)'], 
     mode='lines+markers', 
@@ -109,7 +109,7 @@ fig.add_scatter(
 )
 
 # Ajustar el diseño para doble eje Y y barra deslizante
-fig.update_layout(
+fig2.update_layout(
     yaxis=dict(title='Enrollment Count'),
     yaxis2=dict(title='Student Satisfaction (%)', overlaying='y', side='right'),
     xaxis=dict(title='Faculty'),
@@ -118,7 +118,7 @@ fig.update_layout(
 )
 
 # **Mostrar el gráfico en Streamlit**
-st.plotly_chart(fig)
+st.plotly_chart(fig2)
 
 
 
