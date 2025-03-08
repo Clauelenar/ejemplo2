@@ -2,10 +2,6 @@ import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-import requests
-from io import StringIO
-import streamlit as st
-
 url = "https://raw.githubusercontent.com/Clauelenar/ejemplo2/refs/heads/main/university_student_dashboard_data.csv"
 
 # Cargar los datos desde GitHub
