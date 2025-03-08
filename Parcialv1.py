@@ -6,14 +6,18 @@ import requests
 from io import StringIO
 import streamlit as st
 
-def load_original_data():
-    url = 'https://raw.githubusercontent.com/Clauelenar/ejemplo2/refs/heads/main/university_student_dashboard_data.csv'
-    response = requests.get(url)
-    if response.status_code == 200:
-        return pd.read_csv(StringIO(response.text))
-    else:
-        st.error("Failed to load data from GitHub.")
-        return None
+url = "https://raw.githubusercontent.com/Clauelenar/ejemplo2/refs/heads/main/university_student_dashboard_data.csv"
+
+# Cargar los datos desde GitHub
+@st.cache_data
+def load_data(url):
+    return pd.read_csv(url)
+
+# Cargar los datos
+data = load_data(url)
+
+# Mostrar los datos en Streamlit
+st.title("📊 University Student Dashboard")
 
 # Título de la app
 st.title("Análisis de Admisiones.")
