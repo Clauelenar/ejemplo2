@@ -73,20 +73,17 @@ st.markdown("""
 - A partir de **2021**, la **tasa de retención aumenta sostenidamente**, indicando una posible **mejoría en estrategias institucionales**.
 """)
 
-
-
-# Ordenar los datos asegurando que "Spring" aparece antes que "Fall"
-data_sorted = data.sort_values(by=['Year', 'Term'], ascending=[True, True])
+data_sorted2 = data.sort_values(by=['Year', 'Term'], ascending=[True, True])
 
 # Reestructurar el DataFrame para graficar las facultades en el eje X
-data_melted = data_sorted.melt(id_vars=['Year', 'Student Satisfaction (%)'], 
+data_melted2 = data_sorted2.melt(id_vars=['Year', 'Student Satisfaction (%)'], 
                                value_vars=['Engineering Enrolled', 'Business Enrolled', 
                                            'Arts Enrolled', 'Science Enrolled'], 
                                var_name='Faculty', value_name='Enrollment')
 
 # **Crear gráfico de barras con Student Satisfaction (%) también afectado por la barra deslizante**
 fig2 = px.bar(
-    data_melted, 
+    data_melted2, 
     x='Faculty', 
     y='Enrollment', 
     color='Faculty', 
@@ -96,11 +93,11 @@ fig2 = px.bar(
 )
 
 # Filtrar Student Satisfaction (%) por el año correspondiente
-student_satisfaction_per_year = data_sorted[['Year', 'Student Satisfaction (%)']].drop_duplicates()
+student_satisfaction_per_year = data_sorted2[['Year', 'Student Satisfaction (%)']].drop_duplicates()
 
 # Agregar la línea de Student Satisfaction (%) afectada por la barra deslizante
 fig2.add_scatter(
-    x=data_melted['Faculty'], 
+    x=data_melted2['Faculty'], 
     y=student_satisfaction_per_year['Student Satisfaction (%)'], 
     mode='lines+markers', 
     name='Student Satisfaction (%)', 
