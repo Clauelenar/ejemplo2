@@ -4,5 +4,5 @@ import matplotlib.pyplot as plt
 
 # Título de la app
 st.title("Análisis de Admisiones")
-data= pd.read_csv('/content/university_student_dashboard_data.csv')
+data= pd.read_csv('https://raw.githubusercontent.com/Clauelenar/ejemplo2/refs/heads/main/university_student_dashboard_data.csv')
 data.head()
