@@ -1,6 +1,8 @@
 import streamlit as st
 import seaborn as sns
 import matplotlib.pyplot as plt
+
+import pandas as pd
 # Mostrar los datos en Streamlit
 st.title("📊 University Student Dashboard")
 
